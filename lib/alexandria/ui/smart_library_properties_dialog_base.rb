@@ -39,7 +39,7 @@ module Alexandria
         self.border_width = 4
         child.border_width = 12
 
-        main_box = Gtk::Box.new :vertical
+        main_box = Gtk::Box.new :vertical, 0
         main_box.border_width = 4
         main_box.spacing = 8
 
@@ -47,10 +47,10 @@ module Alexandria
 
         @smart_library_rules = []
 
-        @rules_header_box = Gtk::Box.new :horizontal
+        @rules_header_box = Gtk::Box.new :horizontal, 0
         @rules_header_box.spacing = 2
 
-        @rules_box = Gtk::Box.new :vertical
+        @rules_box = Gtk::Box.new :vertical, 0
         @rules_box.spacing = 8
         @rules_box.border_width = 8
 
@@ -93,7 +93,7 @@ module Alexandria
             "which are empty or conflict with each other. This is " \
             "likely to result in never matching a book. Are you " \
             "sure you want to save this library?"))
-        dialog.default_response = Gtk::ResponseType::CANCEL
+        dialog.set_default_response :cancel
         dialog.show_all
         confirmed = dialog.run == Gtk::ResponseType::YES
         dialog.destroy
@@ -136,7 +136,7 @@ module Alexandria
       end
 
       def insert_new_rule(rule = nil)
-        rule_box = Gtk::Box.new :horizontal
+        rule_box = Gtk::Box.new :horizontal, 0
         rule_box.spacing = 8
 
         left_operand_combo = Gtk::ComboBoxText.new
@@ -159,15 +159,13 @@ module Alexandria
 
         add_button = Gtk::Button.new(label: "")
         add_button.remove(add_button.children.first)
-        add_button << Gtk::Image.new(stock: Gtk::STOCK_ADD,
-                                     size: Gtk::IconSize::BUTTON)
+        add_button << Gtk::Image.new_from_icon_name(Gtk::STOCK_ADD, :button)
 
         add_button.signal_connect("clicked") { insert_new_rule }
 
         remove_button = Gtk::Button.new(label: "")
         remove_button.remove(remove_button.children.first)
-        remove_button << Gtk::Image.new(stock: Gtk::STOCK_REMOVE,
-                                        size: Gtk::IconSize::BUTTON)
+        remove_button << Gtk::Image.new_from_icon_name(Gtk::STOCK_REMOVE, :button)
 
         remove_button.signal_connect("clicked") do |_button|
           idx = @rules_box.children.index(rule_box)

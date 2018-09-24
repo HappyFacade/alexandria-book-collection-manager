@@ -10,20 +10,20 @@ module Alexandria
     # be used for on_load library conversions.
     class BadIsbnsDialog < SimpleDelegator
       def initialize(parent, message, list)
-        dialog = Gtk::MessageDialog.new(parent: parent,
-                                        flags: :modal,
-                                        type: :warning,
-                                        buttons: :close,
-                                        message: message)
+        dialog = Gtk::MessageDialog.new(parent,
+                                        :modal,
+                                        :warning,
+                                        :close,
+                                        message)
         super(dialog)
 
-        isbn_container = Gtk::Box.new :horizontal
-        the_vbox = children.first
-        the_vbox.pack_start(isbn_container)
+        isbn_container = Gtk::Box.new :horizontal, 0
+        the_vbox = dialog.children.first
+        the_vbox.pack_start(isbn_container, false, false, 0)
         the_vbox.reorder_child(isbn_container, 3)
         scrolley = Gtk::ScrolledWindow.new
-        isbn_container.pack_start(scrolley)
-        textview = Gtk::TextView.new(Gtk::TextBuffer.new)
+        isbn_container.pack_start(scrolley, false, false, 0)
+        textview = Gtk::TextView.new_with_buffer(Gtk::TextBuffer.new)
         textview.editable = false
         textview.cursor_visible = false
         scrolley.add(textview)
