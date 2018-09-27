@@ -28,7 +28,7 @@ module Alexandria
 
       def initialize(parent)
         title = _("Import a Library")
-        dialog = Gtk::FileChooserDialog.new title: title, parent: parent, action: :open
+        dialog = Gtk::FileChooserDialog.new title, parent, :open, []
         super(dialog)
         log.debug { "ImportDialog opened" }
         @destroyed = false
