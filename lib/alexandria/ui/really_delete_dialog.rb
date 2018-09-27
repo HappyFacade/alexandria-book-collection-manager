@@ -40,7 +40,7 @@ module Alexandria
                [Gtk::STOCK_DELETE, Gtk::ResponseType::OK]],
               description)
 
-        self.set_default_response :cancel
+        set_default_response :cancel
       end
 
       def ok?

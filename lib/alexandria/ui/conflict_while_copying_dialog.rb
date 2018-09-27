@@ -21,7 +21,7 @@ module Alexandria
                [_("_Replace"), Gtk::ResponseType::OK]],
               _("If you replace the existing book, its contents will " \
                 "be overwritten."))
-        self.set_default_response :cancel
+        set_default_response :cancel
       end
 
       def replace?
