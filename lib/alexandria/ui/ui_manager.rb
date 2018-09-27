@@ -422,7 +422,7 @@ module Alexandria
           obj.unselect_all
         end
 
-        menu = (selected_books.empty?) ? @nobook_popup : @book_popup
+        menu = selected_books.empty? ? @nobook_popup : @book_popup
         menu.popup(nil, nil, event.button, event.time)
       end
 
