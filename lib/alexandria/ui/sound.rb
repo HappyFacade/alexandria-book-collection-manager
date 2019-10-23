@@ -32,7 +32,7 @@ module Alexandria
     class SoundEffectsPlayer
       def initialize
         @sounds_dir = Alexandria::Config::SOUNDS_DIR
-        @ogg_vorbis_pipeline = Gst::Pipeline.new 'pipeline'
+        @ogg_vorbis_pipeline = Gst::Pipeline.new "pipeline"
         set_up_pipeline
         @playing = false
         set_up_bus_watch

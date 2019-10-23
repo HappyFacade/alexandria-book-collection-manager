@@ -479,10 +479,10 @@ module Alexandria
 
           log.debug { "Currently focused widget: #{@main_app.focus.inspect}" }
           log.debug { "#{@library_listview} : #{@library_popup} : #{@listview}" }
-          log.debug {
+          log.debug do
             "@library_listview: #{@library_listview.has_focus} " \
             "or @library_popup:#{@library_popup.has_focus}"
-          }
+          end
           log.debug { "@library_listview does *NOT* have focus" }
           log.debug { "Books are empty: #{books.empty?}" }
           @actiongroup["Properties"].sensitive = \
@@ -1072,7 +1072,7 @@ module Alexandria
         actions.each do |name, stock_id, label, accelerator, tooltip, callback|
           action = Gtk::Action.new(name, label, tooltip, stock_id)
           @actiongroup.add_action_with_accel(action, accelerator)
-          action.signal_connect('activate', &callback)
+          action.signal_connect("activate", &callback)
         end
 
         @uimanager.remove_ui(@move_mid) if @move_mid
