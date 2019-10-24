@@ -19,7 +19,7 @@ module Alexandria
       THEMES = Alexandria::WebTheme.all
 
       def initialize(parent, library, sort_order)
-        @export_dialog = Gtk::FileChooserDialog.new(_('Export "%s"') % library.name,
+        @export_dialog = Gtk::FileChooserDialog.new(_("Export '%s'") % library.name,
                                                     parent,
                                                     :save,
                                                     [[Gtk::STOCK_HELP, :help],
