@@ -122,7 +122,8 @@ module Alexandria
       end
 
       def setup_barcode_scanner_tab
-        @scanner_device_model = Gtk::ListStore.new([GObject::TYPE_STRING, GObject::TYPE_STRING])
+        @scanner_device_model = Gtk::ListStore.new([GObject::TYPE_STRING,
+                                                    GObject::TYPE_STRING])
         chosen_scanner_name = Preferences.instance.barcode_scanner
         index = 0
         @scanner_device_type.model = @scanner_device_model

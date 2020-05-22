@@ -115,7 +115,8 @@ module Alexandria
           renderer.xalign = 0.0
           column.pack_start(renderer, false)
           column.set_cell_data_func(renderer) do |_tree_column, cell, tree_model, iter|
-            rating = (tree_model.get_value(iter, Columns::RATING) - Book::MAX_RATING_STARS).abs
+            value = tree_model.get_value(iter, Columns::RATING)
+            rating = (value - Book::MAX_RATING_STARS).abs
             cell.pixbuf = rating >= i.succ ? Icons::STAR_SET : Icons::STAR_UNSET
           end
         end

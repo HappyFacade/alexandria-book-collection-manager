@@ -762,7 +762,10 @@ module Alexandria
         end
         icon = icon.tag(Icons::FAVORITE_TAG) if rating == Book::MAX_RATING_STARS
         @model.set_value(iter, Columns::COVER_ICON, icon)
-        log.debug { "Full iter: " + (0..15).map { |num| @model.get_value(iter, num).inspect }.join(", ") }
+        log.debug do
+          iter_values = (0..15).map { |num| @model.get_value(iter, num).inspect }
+          "Full iter: " + iter_values.join(", ")
+        end
       end
 
       def append_book(book)
@@ -801,7 +804,8 @@ module Alexandria
                  end
         end
 
-        model.set_value(iter, 0, is_smart ? Icons::SMART_LIBRARY_SMALL : Icons::LIBRARY_SMALL)
+        model.set_value(iter, 0,
+                        is_smart ? Icons::SMART_LIBRARY_SMALL : Icons::LIBRARY_SMALL)
         model.set_value(iter, 1, library.name)
         model.set_value(iter, 2, true)      # editable?
         model.set_value(iter, 3, false)     # separator?

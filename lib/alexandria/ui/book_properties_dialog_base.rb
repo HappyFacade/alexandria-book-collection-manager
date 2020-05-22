@@ -35,7 +35,8 @@ module Alexandria
 
         @entry_tags.complete_tags
 
-        @treeview_authors.model = Gtk::ListStore.new([GObject::TYPE_STRING, GObject::TYPE_BOOLEAN])
+        @treeview_authors.model = Gtk::ListStore.new([GObject::TYPE_STRING,
+                                                      GObject::TYPE_BOOLEAN])
         @treeview_authors.selection.mode = :single
         renderer = Gtk::CellRendererText.new
         renderer.signal_connect("edited") do |_cell, path_string, new_text|
